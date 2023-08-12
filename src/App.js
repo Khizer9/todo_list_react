@@ -98,7 +98,7 @@ function App() {
           </h1>
         ))}
       </div>
-    </div>
+    </div> 
   );
 }
 
