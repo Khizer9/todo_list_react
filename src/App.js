@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import Modal from './components/Modal'
+import { Button, Form, Modal } from "react-bootstrap";
 function App() {
   // const initialArray = [
   //   {
@@ -24,17 +24,24 @@ function App() {
   // const [addAge, setaddAge] = useState("");
   const [blue, setBlue] = useState('')
   const [green, setGreen] = useState('')
+  const [showModal, setShowModal] = useState(false)
+  const [editArray, setEditArray] = useState(null)
 
   const addNewHandler = () => {
-    console.log(addNew, "addNew")
-    setAddNew((prevArr) => [
-      ...prevArr,
-      {
-        id: new Date(),
-        name: addName,
-        // age: addAge,
-      },
-    ]);
+    setAddNew((prevArr) => {
+      if(!Array.isArray(prevArr)){
+        prevArr = []
+      }
+      return [
+        ...prevArr,
+        {
+          id: new Date(),
+          name: addName,
+          // age: addAge,
+        },
+      ]
+      
+    });
   };
 
   useEffect(() => {
@@ -48,9 +55,13 @@ function App() {
   };
 
   const editHandler = (userObj) => {
-    <Modal />
-    console.log(userObj)
-    
+    const updatedArray = addNew.filter((res) => res.id === userObj.id);
+    setEditArray(updatedArray);
+    setShowModal(true)
+  }
+
+  const handleClose = () => {
+    setShowModal(false)
   }
 
   const nameHandler = (e) => {
@@ -98,6 +109,28 @@ function App() {
           </h1>
         ))}
       </div>
+
+      <Modal show={showModal} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <Form>
+                <Form.Group className="mb-3" controlId="todo">
+                <Form.Label>Todoss</Form.Label>
+                <Form.Control value={editArray ? editArray.name : 'KHIZER'} onChange={(e) => setEditArray({...editArray, name: e.target.value})} type="todo" placeholder="Enter Todo list.." />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div> 
   );
 }

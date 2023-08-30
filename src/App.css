@@ -24,13 +24,11 @@
 }
   
 .addBtn {
-  padding: 7px;
   border: 1px solid purple;
   border-radius: 5px;
 }
 
 .delBtn {
-  padding: 7px;
   border: 1px solid purple;
   border-radius: 5px;
   margin-right: 5px;
