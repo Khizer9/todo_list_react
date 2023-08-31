@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 40px;
+  margin: 40px;
 }
 
 .container {
@@ -17,10 +17,10 @@
 }
 
 .container h1{
-  width: 40%;
   background: lightgray;
   border-radius: 10px;
   border-right-color: purple;
+  padding: 25px;
 }
   
 .addBtn {
@@ -35,8 +35,15 @@
 }
 
 .inputText {
-  padding: 10px;
-    width: 30%;
+    padding: 10px;
+    width: 130%;
     border-radius: 5px;
-    margin-bottom: 10px;
+    margin: 10px 0px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
 }
